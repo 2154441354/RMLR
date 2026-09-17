@@ -85,6 +85,7 @@ class SPDLogEuclideanMetric(SPDOnInvariantMetric):
 
         return X_new
 
+# (\alpha,\beta)-ALEM对数欧几里德度量
 class SPDAdaptiveLogEuclideanMetric(SPDOnInvariantMetric):
     """ (\alpha,\beta)-ALEM """
     def __init__(self,n,alpha=1.0, beta=0.):

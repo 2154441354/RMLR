@@ -510,6 +510,9 @@ def spd_mean_kracher_flow(X : Tensor, G0 : Tensor = None, maxiter : int = 50, di
     return G
 
 #--- For ALEM ---
+# ALEM度量具体步骤：先对spd进行特征分解，再进行log处理。
+# 普通 Log-Euclidean 是直接log：Udiag(logλ1​,…,logλn​)U⊤。
+# 但是ALEM是在log完的前边加上可训练参数---权重w：Udiag(w1​logλ1​,…,wn​logλn​)U⊤。
 
 class sym_Glogm(Function):
     """ General log for spd input """
@@ -544,6 +547,7 @@ class sym_Glogm(Function):
         else:
             dw = tmp.diagonal(dim1=-2, dim2=-1).mul(sigma_log).squeeze().mean(dim=0)
         return dz, dw
+        # dz是输入矩阵梯度，dw是权重梯度
 
 class sym_Gexpm(Function):
     """

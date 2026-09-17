@@ -510,6 +510,7 @@ def spd_mean_kracher_flow(X : Tensor, G0 : Tensor = None, maxiter : int = 50, di
     return G
 
 #--- For ALEM ---
+# 分类 loss → RMLR → ALEM → sym_Glogm → 更新自适应 Log-Euclidean 权重
 # ALEM度量具体步骤：先对spd进行特征分解，再进行log处理。
 # 普通 Log-Euclidean 是直接log：Udiag(logλ1​,…,logλn​)U⊤。
 # 但是ALEM是在log完的前边加上可训练参数---权重w：Udiag(w1​logλ1​,…,wn​logλn​)U⊤。
